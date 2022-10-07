@@ -12,6 +12,8 @@ class UserListCell: UICollectionViewCell {
     private let userImageView = UIImageView()
     private let userNameLabel = UILabel()
     
+    var cancelLoading: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureConstraints()
@@ -26,6 +28,12 @@ class UserListCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancelLoading?()
+        userImageView.image = nil
     }
     
     func configure(with name: String) {

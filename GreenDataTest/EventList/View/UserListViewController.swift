@@ -87,7 +87,7 @@ extension UserListViewController: UICollectionViewDataSource {
         let user = randomUsers[indexPath.item]
         cell?.configure(with: viewModel.formatName(of: user))
         
-        viewModel.loadImage(url: user.picture.thumbnail) { image in
+        cell?.cancelLoading = viewModel.loadImage(url: user.picture.large) { image in
             if let image = image {
                 DispatchQueue.main.async {
                     cell?.configure(with: image)

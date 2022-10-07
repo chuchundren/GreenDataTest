@@ -32,8 +32,8 @@ final class UserListViewModel {
         }
     }
     
-    func loadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
-        api.loadImage(url: url) { result in
+    func loadImage(url: URL, completion: @escaping (UIImage?) -> Void) -> RandomUserAPI.Cancellable? {
+        return api.loadImage(url: url) { result in
             switch result {
             case .success(let image):
                 completion(image)
