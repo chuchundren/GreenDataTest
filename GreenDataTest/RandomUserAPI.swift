@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct RandomUserAPI {
     
@@ -24,5 +25,21 @@ struct RandomUserAPI {
                 }
             }
         }.resume()
+    }
+    
+    func loadImage(url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            if let data = data, let image = UIImage(data: data) {
+                completion(.success(image))
+            }
+            
+            guard let error = error else {
+                return
+            }
+            
+            completion(.failure(error))
+        }
+        
+        task.resume()
     }
 }

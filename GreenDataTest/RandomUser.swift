@@ -18,10 +18,11 @@ struct RandomUser: Codable {
     let email: String
     let dateOfBirth: DateOfBirth
     let location: Location
+    let picture: Picture
     
     enum CodingKeys: String, CodingKey {
         case dateOfBirth = "dob"
-        case gender, name, email, location
+        case gender, name, email, location, picture
     }
     
     enum Gender: String, Codable {

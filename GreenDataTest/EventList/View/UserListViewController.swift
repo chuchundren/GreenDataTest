@@ -11,6 +11,13 @@ class UserListViewController: UIViewController {
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UserListViewController.listLayout())
     private var viewModel: UserListViewModel
+    private var randomUsers: [RandomUser] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     init(viewModel: UserListViewModel) {
         self.viewModel = viewModel
@@ -27,6 +34,9 @@ class UserListViewController: UIViewController {
         
         configureConstraints()
         setupCollectionView()
+        viewModel.requestUsersForTheNextPage { users in
+            self.randomUsers.append(contentsOf: users)
+        }
     }
     
     private func configureConstraints() {
@@ -69,11 +79,22 @@ class UserListViewController: UIViewController {
 extension UserListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        randomUsers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserListCell.reuseIdentifier, for: indexPath) as? UserListCell
+        let user = randomUsers[indexPath.item]
+        cell?.configure(with: viewModel.formatName(of: user))
+        
+        viewModel.loadImage(url: user.picture.thumbnail) { image in
+            if let image = image {
+                DispatchQueue.main.async {
+                    cell?.configure(with: image)
+                }
+            }
+        }
+        
         return cell ?? UICollectionViewCell()
     }
     

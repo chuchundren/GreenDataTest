@@ -16,9 +16,7 @@ class UserListCell: UICollectionViewCell {
         super.init(frame: frame)
         configureConstraints()
         
-        userNameLabel.text = "user name"
-        userImageView.image = UIImage(systemName: "person.fill")
-        
+        userImageView.backgroundColor = .systemGray6
         userImageView.layer.cornerRadius = Constants.imageSize / 2
         userImageView.clipsToBounds = true
         
@@ -28,6 +26,14 @@ class UserListCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with name: String) {
+        userNameLabel.text = name
+    }
+    
+    func configure(with image: UIImage) {
+        userImageView.image = image
     }
     
     private func configureConstraints() {
