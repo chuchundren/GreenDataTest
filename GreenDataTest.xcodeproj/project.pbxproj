@@ -14,6 +14,8 @@
 		4B3FA85E28EF0FB900599358 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FA85D28EF0FB900599358 /* UserListViewController.swift */; };
 		4B91FBFD28EF46A800719EC9 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B91FBFC28EF46A800719EC9 /* UserListCell.swift */; };
 		4B91FBFF28EF7FE100719EC9 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B91FBFE28EF7FE100719EC9 /* UICollectionReusableView+Extension.swift */; };
+		4B91FC0328EF83C800719EC9 /* UserListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B91FC0228EF83C800719EC9 /* UserListCoordinator.swift */; };
+		4B91FC0528F063D200719EC9 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B91FC0428F063D200719EC9 /* UserListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		4B3FA85D28EF0FB900599358 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		4B91FBFC28EF46A800719EC9 /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
 		4B91FBFE28EF7FE100719EC9 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
+		4B91FC0228EF83C800719EC9 /* UserListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCoordinator.swift; sourceTree = "<group>"; };
+		4B91FC0428F063D200719EC9 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +64,7 @@
 			children = (
 				4B3FA84928EF0EA200599358 /* AppDelegate.swift */,
 				4B3FA84B28EF0EA200599358 /* SceneDelegate.swift */,
-				4B91FC0128EF805B00719EC9 /* View */,
+				4B91FC0628F0646200719EC9 /* EventList */,
 				4B91FC0028EF804F00719EC9 /* Extensions */,
 				4B3FA85228EF0EAB00599358 /* Assets.xcassets */,
 				4B3FA85428EF0EAB00599358 /* LaunchScreen.storyboard */,
@@ -84,6 +88,16 @@
 				4B91FBFC28EF46A800719EC9 /* UserListCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4B91FC0628F0646200719EC9 /* EventList */ = {
+			isa = PBXGroup;
+			children = (
+				4B91FC0228EF83C800719EC9 /* UserListCoordinator.swift */,
+				4B91FC0428F063D200719EC9 /* UserListViewModel.swift */,
+				4B91FC0128EF805B00719EC9 /* View */,
+			);
+			path = EventList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,9 +171,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B91FBFD28EF46A800719EC9 /* UserListCell.swift in Sources */,
+				4B91FC0328EF83C800719EC9 /* UserListCoordinator.swift in Sources */,
 				4B3FA84A28EF0EA200599358 /* AppDelegate.swift in Sources */,
 				4B91FBFF28EF7FE100719EC9 /* UICollectionReusableView+Extension.swift in Sources */,
 				4B3FA84C28EF0EA200599358 /* SceneDelegate.swift in Sources */,
+				4B91FC0528F063D200719EC9 /* UserListViewModel.swift in Sources */,
 				4B3FA85E28EF0FB900599358 /* UserListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
