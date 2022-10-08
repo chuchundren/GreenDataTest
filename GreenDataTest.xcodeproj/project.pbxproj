@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1B833228F0BEF50014A9B5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833128F0BEF50014A9B5 /* ProfileViewController.swift */; };
+		4B1B833428F0C3080014A9B5 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */; };
+		4B1B833628F18F050014A9B5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */; };
+		4B1B833B28F19B0E0014A9B5 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833A28F19B0E0014A9B5 /* NavigationCoordinator.swift */; };
 		4B3FA84A28EF0EA200599358 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FA84928EF0EA200599358 /* AppDelegate.swift */; };
 		4B3FA84C28EF0EA200599358 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FA84B28EF0EA200599358 /* SceneDelegate.swift */; };
 		4B3FA85328EF0EAB00599358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B3FA85228EF0EAB00599358 /* Assets.xcassets */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B1B833128F0BEF50014A9B5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		4B1B833A28F19B0E0014A9B5 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		4B3FA84628EF0EA200599358 /* GreenDataTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenDataTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3FA84928EF0EA200599358 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3FA84B28EF0EA200599358 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +55,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B1B833028F0BEE00014A9B5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4B1B833128F0BEF50014A9B5 /* ProfileViewController.swift */,
+				4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */,
+				4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4B1B833728F19AE60014A9B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B91FC0928F0683800719EC9 /* RandomUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B1B833828F19AEF0014A9B5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4B91FC0B28F06B8700719EC9 /* RandomUserAPI.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4B1B833928F19AFB0014A9B5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4B1B833A28F19B0E0014A9B5 /* NavigationCoordinator.swift */,
+				4B1B833828F19AEF0014A9B5 /* Services */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		4B3FA83D28EF0EA100599358 = {
 			isa = PBXGroup;
 			children = (
@@ -68,9 +111,10 @@
 			children = (
 				4B3FA84928EF0EA200599358 /* AppDelegate.swift */,
 				4B3FA84B28EF0EA200599358 /* SceneDelegate.swift */,
-				4B91FC0B28F06B8700719EC9 /* RandomUserAPI.swift */,
-				4B91FC0928F0683800719EC9 /* RandomUser.swift */,
-				4B91FC0628F0646200719EC9 /* EventList */,
+				4B1B833928F19AFB0014A9B5 /* Common */,
+				4B1B833728F19AE60014A9B5 /* Model */,
+				4B1B833028F0BEE00014A9B5 /* Profile */,
+				4B91FC0628F0646200719EC9 /* UserList */,
 				4B91FC0028EF804F00719EC9 /* Extensions */,
 				4B3FA85228EF0EAB00599358 /* Assets.xcassets */,
 				4B3FA85428EF0EAB00599358 /* LaunchScreen.storyboard */,
@@ -96,14 +140,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		4B91FC0628F0646200719EC9 /* EventList */ = {
+		4B91FC0628F0646200719EC9 /* UserList */ = {
 			isa = PBXGroup;
 			children = (
 				4B91FC0228EF83C800719EC9 /* UserListCoordinator.swift */,
 				4B91FC0428F063D200719EC9 /* UserListViewModel.swift */,
 				4B91FC0128EF805B00719EC9 /* View */,
 			);
-			path = EventList;
+			path = UserList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,10 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B1B833428F0C3080014A9B5 /* ProfileCoordinator.swift in Sources */,
 				4B91FBFD28EF46A800719EC9 /* UserListCell.swift in Sources */,
 				4B91FC0328EF83C800719EC9 /* UserListCoordinator.swift in Sources */,
+				4B1B833B28F19B0E0014A9B5 /* NavigationCoordinator.swift in Sources */,
+				4B1B833228F0BEF50014A9B5 /* ProfileViewController.swift in Sources */,
 				4B3FA84A28EF0EA200599358 /* AppDelegate.swift in Sources */,
 				4B91FC0C28F06B8700719EC9 /* RandomUserAPI.swift in Sources */,
+				4B1B833628F18F050014A9B5 /* ProfileViewModel.swift in Sources */,
 				4B91FC0A28F0683800719EC9 /* RandomUser.swift in Sources */,
 				4B91FBFF28EF7FE100719EC9 /* UICollectionReusableView+Extension.swift in Sources */,
 				4B3FA84C28EF0EA200599358 /* SceneDelegate.swift in Sources */,

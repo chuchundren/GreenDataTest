@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         let coordinator = UserListCoordinator()
-        let view = coordinator.start()
+        let view = coordinator.makeRootFlow()
         
         let window = UIWindow(windowScene: scene)
         window.rootViewController = view

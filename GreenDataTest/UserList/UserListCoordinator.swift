@@ -19,4 +19,9 @@ final class UserListCoordinator: NavigationCoordinator {
         return view
     }
     
+    func openProfile(_ user: RandomUser) {
+        let profileCoordinator = ProfileCoordinator(user: user)
+        open(child: profileCoordinator)
+    }
+    
 }

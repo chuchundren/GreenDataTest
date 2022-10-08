@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class UserListViewModel {
-    weak var coordinator: UserListCoordinator?
+    var coordinator: UserListCoordinator?
     private var api: RandomUserAPI
     private var users: [RandomUser] = []
     private var page = 0
@@ -45,6 +45,10 @@ final class UserListViewModel {
     
     func formatName(of model: RandomUser) -> String {
         model.name.first + " " + model.name.last
+    }
+    
+    func didAskToOpenProfile(of user: RandomUser) {
+        coordinator?.openProfile(user)
     }
     
 }

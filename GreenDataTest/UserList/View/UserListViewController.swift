@@ -53,6 +53,7 @@ class UserListViewController: UIViewController {
     
     private func setupCollectionView() {
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(UserListCell.self, forCellWithReuseIdentifier: UserListCell.reuseIdentifier)
         collectionView.backgroundColor = .clear
     }
@@ -96,6 +97,15 @@ extension UserListViewController: UICollectionViewDataSource {
         }
         
         return cell ?? UICollectionViewCell()
+    }
+    
+}
+
+extension UserListViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        viewModel.didAskToOpenProfile(of: randomUsers[indexPath.item])
     }
     
 }
