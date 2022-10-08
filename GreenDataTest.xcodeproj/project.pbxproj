@@ -11,6 +11,7 @@
 		4B1B833428F0C3080014A9B5 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */; };
 		4B1B833628F18F050014A9B5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */; };
 		4B1B833B28F19B0E0014A9B5 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833A28F19B0E0014A9B5 /* NavigationCoordinator.swift */; };
+		4B1B833D28F1EA080014A9B5 /* LoaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833C28F1EA080014A9B5 /* LoaderReusableView.swift */; };
 		4B3FA84A28EF0EA200599358 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FA84928EF0EA200599358 /* AppDelegate.swift */; };
 		4B3FA84C28EF0EA200599358 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FA84B28EF0EA200599358 /* SceneDelegate.swift */; };
 		4B3FA85328EF0EAB00599358 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B3FA85228EF0EAB00599358 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		4B1B833A28F19B0E0014A9B5 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		4B1B833C28F1EA080014A9B5 /* LoaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderReusableView.swift; sourceTree = "<group>"; };
 		4B3FA84628EF0EA200599358 /* GreenDataTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenDataTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3FA84928EF0EA200599358 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B3FA84B28EF0EA200599358 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				4B3FA85D28EF0FB900599358 /* UserListViewController.swift */,
+				4B1B833C28F1EA080014A9B5 /* LoaderReusableView.swift */,
 				4B91FBFC28EF46A800719EC9 /* UserListCell.swift */,
 			);
 			path = View;
@@ -232,6 +235,7 @@
 				4B91FBFF28EF7FE100719EC9 /* UICollectionReusableView+Extension.swift in Sources */,
 				4B3FA84C28EF0EA200599358 /* SceneDelegate.swift in Sources */,
 				4B91FC0528F063D200719EC9 /* UserListViewModel.swift in Sources */,
+				4B1B833D28F1EA080014A9B5 /* LoaderReusableView.swift in Sources */,
 				4B3FA85E28EF0FB900599358 /* UserListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,8 +34,8 @@ class UserListViewController: UIViewController {
         
         configureConstraints()
         setupCollectionView()
-        viewModel.requestUsersForTheNextPage { users in
-            self.randomUsers.append(contentsOf: users)
+        viewModel.requestUsersForTheNextPage { [weak self] users in
+            self?.randomUsers.append(contentsOf: users)
         }
     }
     
@@ -55,6 +55,7 @@ class UserListViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UserListCell.self, forCellWithReuseIdentifier: UserListCell.reuseIdentifier)
+        collectionView.register(LoaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoaderReusableView.reuseIdentifier)
         collectionView.backgroundColor = .clear
     }
     
@@ -65,11 +66,19 @@ class UserListViewController: UIViewController {
         item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .absolute(80))
+                                               heightDimension: .absolute(80))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                         subitems: [item])
+                                                       subitems: [item])
+        
+        let footerHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                      heightDimension: .absolute(100.0))
         
         let section = NSCollectionLayoutSection(group: group)
+        let footer = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: footerHeaderSize,
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom)
+        section.boundarySupplementaryItems = [footer]
 
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
@@ -99,6 +108,18 @@ extension UserListViewController: UICollectionViewDataSource {
         return cell ?? UICollectionViewCell()
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LoaderReusableView.reuseIdentifier, for: indexPath) as? LoaderReusableView else {
+                fatalError()
+            }
+            
+            return footerView
+        }
+        
+        fatalError()
+    }
+    
 }
 
 extension UserListViewController: UICollectionViewDelegate {
@@ -108,4 +129,9 @@ extension UserListViewController: UICollectionViewDelegate {
         viewModel.didAskToOpenProfile(of: randomUsers[indexPath.item])
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        viewModel.requestUsersForTheNextPage { [weak self] users in
+            self?.randomUsers.append(contentsOf: users)
+        }
+    }
 }

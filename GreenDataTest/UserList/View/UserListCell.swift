@@ -18,12 +18,12 @@ class UserListCell: UICollectionViewCell {
         super.init(frame: frame)
         configureConstraints()
         
-        userImageView.backgroundColor = .systemGray6
+        userImageView.backgroundColor = .systemBackground
         userImageView.layer.cornerRadius = Constants.imageSize / 2
         userImageView.clipsToBounds = true
         
         layer.cornerRadius = 8
-        backgroundColor = .white
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
