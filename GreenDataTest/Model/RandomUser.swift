@@ -15,6 +15,7 @@ struct RandomUserResult: Codable {
 struct RandomUser: Codable {
     let gender: Gender
     let name: Name
+    let login: Login
     let email: String
     let dateOfBirth: DateOfBirth
     let location: Location
@@ -22,11 +23,15 @@ struct RandomUser: Codable {
     
     enum CodingKeys: String, CodingKey {
         case dateOfBirth = "dob"
-        case gender, name, email, location, picture
+        case gender, name, login, email, location, picture
     }
     
     enum Gender: String, Codable {
         case male, female
+    }
+    
+    struct Login: Codable {
+        let uuid: String
     }
     
     struct Name: Codable {

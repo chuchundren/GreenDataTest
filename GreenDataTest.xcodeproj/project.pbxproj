@@ -23,6 +23,8 @@
 		4B91FC0528F063D200719EC9 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B91FC0428F063D200719EC9 /* UserListViewModel.swift */; };
 		4B91FC0A28F0683800719EC9 /* RandomUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B91FC0928F0683800719EC9 /* RandomUser.swift */; };
 		4B91FC0C28F06B8700719EC9 /* RandomUserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B91FC0B28F06B8700719EC9 /* RandomUserAPI.swift */; };
+		4BF5742328F3567900F9752F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BF5742128F3567900F9752F /* Model.xcdatamodeld */; };
+		4BF5742528F3590B00F9752F /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF5742428F3590B00F9752F /* CoreDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		4B91FC0428F063D200719EC9 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 		4B91FC0928F0683800719EC9 /* RandomUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUser.swift; sourceTree = "<group>"; };
 		4B91FC0B28F06B8700719EC9 /* RandomUserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserAPI.swift; sourceTree = "<group>"; };
+		4BF5742228F3567900F9752F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4BF5742428F3590B00F9752F /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4B91FC0B28F06B8700719EC9 /* RandomUserAPI.swift */,
+				4BF5742428F3590B00F9752F /* CoreDataStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 				4B91FC0028EF804F00719EC9 /* Extensions */,
 				4B3FA85228EF0EAB00599358 /* Assets.xcassets */,
 				4B3FA85428EF0EAB00599358 /* LaunchScreen.storyboard */,
+				4BF5742128F3567900F9752F /* Model.xcdatamodeld */,
 				4B3FA85728EF0EAB00599358 /* Info.plist */,
 			);
 			path = GreenDataTest;
@@ -225,6 +231,7 @@
 			files = (
 				4B1B833428F0C3080014A9B5 /* ProfileCoordinator.swift in Sources */,
 				4B91FBFD28EF46A800719EC9 /* UserListCell.swift in Sources */,
+				4BF5742328F3567900F9752F /* Model.xcdatamodeld in Sources */,
 				4B91FC0328EF83C800719EC9 /* UserListCoordinator.swift in Sources */,
 				4B1B833B28F19B0E0014A9B5 /* NavigationCoordinator.swift in Sources */,
 				4B1B833228F0BEF50014A9B5 /* ProfileViewController.swift in Sources */,
@@ -236,6 +243,7 @@
 				4B3FA84C28EF0EA200599358 /* SceneDelegate.swift in Sources */,
 				4B91FC0528F063D200719EC9 /* UserListViewModel.swift in Sources */,
 				4B1B833D28F1EA080014A9B5 /* LoaderReusableView.swift in Sources */,
+				4BF5742528F3590B00F9752F /* CoreDataStore.swift in Sources */,
 				4B3FA85E28EF0FB900599358 /* UserListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +452,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4BF5742128F3567900F9752F /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4BF5742228F3567900F9752F /* Model.xcdatamodel */,
+			);
+			currentVersion = 4BF5742228F3567900F9752F /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4B3FA83E28EF0EA100599358 /* Project object */;
 }

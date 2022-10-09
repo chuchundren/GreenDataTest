@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDRandomUser" representedClassName="CDRandomUser" syncable="YES" codeGenerationType="class">
+        <attribute name="email" attributeType="String"/>
+        <attribute name="gender" attributeType="String"/>
+        <attribute name="uuid" attributeType="String"/>
+        <relationship name="dateOfBirth" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DateOfBirth" inverseName="user" inverseEntity="DateOfBirth"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="user" inverseEntity="Location"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Name" inverseName="user" inverseEntity="Name"/>
+        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture" inverseName="user" inverseEntity="Picture"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="uuid"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="DateOfBirth" representedClassName="DateOfBirth" syncable="YES" codeGenerationType="class">
+        <attribute name="age" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRandomUser" inverseName="dateOfBirth" inverseEntity="CDRandomUser"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
+        <relationship name="timezone" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timezone" inverseName="location" inverseEntity="Timezone"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRandomUser" inverseName="location" inverseEntity="CDRandomUser"/>
+    </entity>
+    <entity name="Name" representedClassName="Name" syncable="YES" codeGenerationType="class">
+        <attribute name="first" attributeType="String"/>
+        <attribute name="last" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRandomUser" inverseName="name" inverseEntity="CDRandomUser"/>
+    </entity>
+    <entity name="Picture" representedClassName="Picture" syncable="YES" codeGenerationType="class">
+        <attribute name="large" attributeType="URI"/>
+        <attribute name="medium" attributeType="URI"/>
+        <attribute name="thumbnail" attributeType="URI"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRandomUser" inverseName="picture" inverseEntity="CDRandomUser"/>
+    </entity>
+    <entity name="Timezone" representedClassName="Timezone" syncable="YES" codeGenerationType="class">
+        <attribute name="offset" attributeType="String"/>
+        <attribute name="tzDescription" attributeType="String"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="timezone" inverseEntity="Location"/>
+    </entity>
+    <elements>
+        <element name="CDRandomUser" positionX="-1122.014404296875" positionY="-710.2787322998047" width="128" height="148"/>
+        <element name="Name" positionX="-923.8721313476562" positionY="-537.0248565673828" width="128" height="88"/>
+        <element name="Picture" positionX="-1264.595153808594" positionY="-413.7350311279297" width="128" height="103"/>
+        <element name="DateOfBirth" positionX="-1095.131713867188" positionY="-387.1561126708984" width="128" height="88"/>
+        <element name="Timezone" positionX="-884.6156005859375" positionY="-343.2918243408203" width="128" height="88"/>
+        <element name="Location" positionX="-703.6295166015625" positionY="-420.6196746826172" width="128" height="73"/>
+    </elements>
+</model>
