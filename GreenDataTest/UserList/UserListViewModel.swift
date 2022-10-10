@@ -18,7 +18,6 @@ final class UserListViewModel {
     private(set) var users: [RandomUser] = []
     
     private var page = 1
-    private var semaphore = DispatchSemaphore(value: 1)
     private var requests = 0
     
     init(api: RandomUserAPI = RandomUserAPI(), store: CoreDataStore = .shared) {
@@ -27,7 +26,11 @@ final class UserListViewModel {
     }
     
     func requestUsersForTheNextPage() {
-        semaphore.wait()
+        guard requests == 0 else {
+            return
+        }
+        
+        requests += 1
         api.getUsers(page: page) { [weak self] result in
             switch result {
             case .success(let users):
@@ -36,7 +39,7 @@ final class UserListViewModel {
                 print(error)
             }
             
-            self?.semaphore.signal()
+            self?.requests -= 1
         }
     }
     
