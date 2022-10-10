@@ -26,6 +26,13 @@ final class ProfileViewModel {
         return formatter
     }()
     
+    private lazy var localTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+    
     init(user: RandomUser, api: RandomUserAPI = RandomUserAPI()) {
         self.user = user
         self.api = api
@@ -41,13 +48,20 @@ final class ProfileViewModel {
             formattedDate = toStringFormatter.string(from: date)
         }
         
+        var localTime = ""
+        if let secondsFromGMT = user.location.timezone.offset.secondsFromGMT(),
+           let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) {
+            localTimeFormatter.timeZone = timeZone
+            localTime = localTimeFormatter.string(from: Date())
+        }
+        
         return ProfileViewController.ViewModel(
             imageURL: user.picture.large,
             name: user.name.first + " " + user.name.last,
             genderIcon: gender,
             dateOfBirth: "Date of birth: \(formattedDate) (\(user.dateOfBirth.age) \(yearsOfAge))",
             email: user.email,
-            localTime: "Local time: \(Date()) \(user.location.timezone.offset)"
+            localTime: "Local time: \(localTime)"
         )
     }
     
@@ -62,14 +76,4 @@ final class ProfileViewModel {
         }
     }
     
-}
-
-extension String {
-    func image(ofSize fontSize: CGFloat) -> UIImage? {
-        let size = CGSize(width: fontSize, height: fontSize)
-        let rect = CGRect(origin: CGPoint(), size: size)
-        return UIGraphicsImageRenderer(size: size).image { (context) in
-            (self as NSString).draw(in: rect, withAttributes: [.font : UIFont.systemFont(ofSize: fontSize - 8)])
-        }
-    }
 }
