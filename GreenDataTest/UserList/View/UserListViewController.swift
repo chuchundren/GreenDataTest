@@ -11,13 +11,6 @@ class UserListViewController: UIViewController {
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UserListViewController.listLayout())
     private var viewModel: UserListViewModel
-    private var randomUsers: [RandomUser] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
     
     init(viewModel: UserListViewModel) {
         self.viewModel = viewModel
@@ -34,9 +27,14 @@ class UserListViewController: UIViewController {
         
         configureConstraints()
         setupCollectionView()
-        viewModel.requestUsersForTheNextPage { [weak self] users in
-            self?.randomUsers.append(contentsOf: users)
+        
+        viewModel.usersChanged = { [weak self] in
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
         }
+        
+        viewModel.requestUsersForTheNextPage()
     }
     
     private func configureConstraints() {
@@ -89,12 +87,12 @@ class UserListViewController: UIViewController {
 extension UserListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        randomUsers.count
+        viewModel.users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserListCell.reuseIdentifier, for: indexPath) as? UserListCell
-        let user = randomUsers[indexPath.item]
+        let user = viewModel.users[indexPath.item]
         cell?.configure(with: viewModel.formatName(of: user))
         
         cell?.cancelLoading = viewModel.loadImage(url: user.picture.large) { image in
@@ -126,12 +124,12 @@ extension UserListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        viewModel.didAskToOpenProfile(of: randomUsers[indexPath.item])
+        viewModel.didAskToOpenProfile(of: viewModel.users[indexPath.item])
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-        viewModel.requestUsersForTheNextPage { [weak self] users in
-            self?.randomUsers.append(contentsOf: users)
+        if elementKind == UICollectionView.elementKindSectionFooter {
+            viewModel.requestUsersForTheNextPage()
         }
     }
 }

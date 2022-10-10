@@ -12,28 +12,30 @@ final class UserListViewModel {
     var coordinator: UserListCoordinator?
     private var api: RandomUserAPI
     private var store: CoreDataStore
-    private var users: [RandomUser] = []
-    private var page = 0
+    
+    var usersChanged: () -> Void = {}
+    
+    private(set) var users: [RandomUser] = []
+    
+    private var page = 1
     private var semaphore = DispatchSemaphore(value: 1)
+    private var requests = 0
     
     init(api: RandomUserAPI = RandomUserAPI(), store: CoreDataStore = .shared) {
         self.api = api
         self.store = store
     }
     
-    func requestUsersForTheNextPage(completion: @escaping ([RandomUser]) -> Void) {
+    func requestUsersForTheNextPage() {
         semaphore.wait()
-        page += 1
         api.getUsers(page: page) { [weak self] result in
             switch result {
             case .success(let users):
-                self?.users += users
-                self?.store.cacheUsers(users)
-                completion(users)
+                self?.appendUsers(users)
             case .failure(let error):
                 print(error)
-                completion([])
             }
+            
             self?.semaphore.signal()
         }
     }
@@ -55,6 +57,13 @@ final class UserListViewModel {
     
     func didAskToOpenProfile(of user: RandomUser) {
         coordinator?.openProfile(user)
+    }
+    
+    private func appendUsers(_ users: [RandomUser]) {
+        self.users += users
+        page += 1
+        usersChanged()
+        store.cacheUsers(users)
     }
     
 }
