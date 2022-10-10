@@ -52,6 +52,8 @@ class ProfileViewController: UIViewController {
     private var portraitConstraints = [NSLayoutConstraint]()
     private var landscapeConstraints = [NSLayoutConstraint]()
     
+    var onImageTap: ((UIImage) -> Void)?
+    
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -67,6 +69,8 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemBackground
         portraitConstraints = constraintsForPortraitOrientation()
         landscapeConstraints = constraintsForLandscapeOrientation()
+        
+        setupGestureRecognizer()
         
         configureConstaints()
         configure(with: viewModel.viewModel())
@@ -96,6 +100,19 @@ class ProfileViewController: UIViewController {
         dateOfBirthLabel.text = userProfile.dateOfBirth
         emailLabel.text = userProfile.email
         localTimeLabel.text = userProfile.localTime
+    }
+    
+    private func setupGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapOnImage))
+        tap.numberOfTapsRequired = 1
+        userImageView.addGestureRecognizer(tap)
+        userImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func didTapOnImage() {
+        if let image = userImageView.image {
+            onImageTap?(image)
+        }
     }
 
     private func configureConstaints() {
