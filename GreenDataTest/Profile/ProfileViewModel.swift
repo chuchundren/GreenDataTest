@@ -14,14 +14,11 @@ final class ProfileViewModel {
     private let user: RandomUser
     private let api: RandomUserAPI
     
-    private lazy var formatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.calendar = Calendar(identifier: .iso8601)
-            formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.timeZone = TimeZone(secondsFromGMT: 0)
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-            return formatter
-        }()
+    private lazy var iso8601Formatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter
+    }()
     
     private lazy var toStringFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -36,7 +33,7 @@ final class ProfileViewModel {
     
     func viewModel() -> ProfileViewController.ViewModel {
         let gender = user.gender == .female ? "👩".image(ofSize: 32) : "👨".image(ofSize: 32)
-        let date = formatter.date(from: user.dateOfBirth.date)
+        let date = iso8601Formatter.date(from: user.dateOfBirth.date)
         var formattedDate = ""
         let yearsOfAge = user.dateOfBirth.age % 10 == 1 ? "year" : "years"
         
