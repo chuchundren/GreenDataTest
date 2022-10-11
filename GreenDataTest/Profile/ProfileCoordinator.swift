@@ -21,7 +21,14 @@ class ProfileCoordinator: NavigationCoordinator {
         
         let view = ProfileViewController(viewModel: vm)
         view.title = "Profile"
+        view.onImageTap = openImageFullScreen(_:)
         
         return view
     }
+    
+    private func openImageFullScreen(_ url: URL) {
+        let fullScreenImageCoordinator = FullScreenImageCoordinator(imageURL: url)
+        open(child: fullScreenImageCoordinator)
+    }
+    
 }

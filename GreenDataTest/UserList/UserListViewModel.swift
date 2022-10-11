@@ -20,7 +20,7 @@ final class UserListViewModel {
     private var page = 1
     private var requests = 0
     
-    init(api: RandomUserAPI = RandomUserAPI(), store: CoreDataStore = .shared) {
+    init(api: RandomUserAPI = .shared, store: CoreDataStore = .shared) {
         self.api = api
         self.store = store
     }

@@ -8,9 +8,12 @@
 import Foundation
 import UIKit
 
-struct RandomUserAPI {
+final class RandomUserAPI {
     typealias Cancellable = () -> Void
     private var imageCache = NSCache<NSString, NSData>()
+    static let shared = RandomUserAPI()
+
+    private init() {}
     
     func getUsers(page: Int, completion: @escaping (Result<[RandomUser], Error>) -> Void) {
         guard let url = URL(string: "https://randomuser.me/api/?page=\(page)&results=20&seed=abc") else {
@@ -36,9 +39,9 @@ struct RandomUserAPI {
             return nil
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             if let data = data, let image = UIImage(data: data) {
-                imageCache.setObject(data as NSData, forKey: url.absoluteString as NSString)
+                self?.imageCache.setObject(data as NSData, forKey: url.absoluteString as NSString)
                 completion(.success(image))
             }
             

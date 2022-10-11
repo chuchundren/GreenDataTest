@@ -33,7 +33,7 @@ final class ProfileViewModel {
         return formatter
     }()
     
-    init(user: RandomUser, api: RandomUserAPI = RandomUserAPI()) {
+    init(user: RandomUser, api: RandomUserAPI = .shared) {
         self.user = user
         self.api = api
     }

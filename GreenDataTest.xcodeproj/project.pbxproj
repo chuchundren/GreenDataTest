@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4B0305CB28F45927000796DE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305CA28F45927000796DE /* String+Extension.swift */; };
+		4B0305CE28F4A812000796DE /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305CD28F4A812000796DE /* FullScreenImageViewController.swift */; };
+		4B0305D228F58EA7000796DE /* FullScreenImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305D128F58EA7000796DE /* FullScreenImageViewModel.swift */; };
+		4B0305D428F594A6000796DE /* FullScreenImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305D328F594A6000796DE /* FullScreenImageCoordinator.swift */; };
 		4B1B833228F0BEF50014A9B5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833128F0BEF50014A9B5 /* ProfileViewController.swift */; };
 		4B1B833428F0C3080014A9B5 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */; };
 		4B1B833628F18F050014A9B5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		4B0305CA28F45927000796DE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		4B0305CD28F4A812000796DE /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
+		4B0305D128F58EA7000796DE /* FullScreenImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewModel.swift; sourceTree = "<group>"; };
+		4B0305D328F594A6000796DE /* FullScreenImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageCoordinator.swift; sourceTree = "<group>"; };
 		4B1B833128F0BEF50014A9B5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -63,6 +69,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B0305CC28F4A7E1000796DE /* FullScreenImage */ = {
+			isa = PBXGroup;
+			children = (
+				4B0305CD28F4A812000796DE /* FullScreenImageViewController.swift */,
+				4B0305D328F594A6000796DE /* FullScreenImageCoordinator.swift */,
+				4B0305D128F58EA7000796DE /* FullScreenImageViewModel.swift */,
+			);
+			path = FullScreenImage;
+			sourceTree = "<group>";
+		};
 		4B1B833028F0BEE00014A9B5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,8 +138,9 @@
 				4B3FA84B28EF0EA200599358 /* SceneDelegate.swift */,
 				4B1B833928F19AFB0014A9B5 /* Common */,
 				4B1B833728F19AE60014A9B5 /* Model */,
-				4B1B833028F0BEE00014A9B5 /* Profile */,
 				4B91FC0628F0646200719EC9 /* UserList */,
+				4B1B833028F0BEE00014A9B5 /* Profile */,
+				4B0305CC28F4A7E1000796DE /* FullScreenImage */,
 				4B91FC0028EF804F00719EC9 /* Extensions */,
 				4B3FA85228EF0EAB00599358 /* Assets.xcassets */,
 				4B3FA85428EF0EAB00599358 /* LaunchScreen.storyboard */,
@@ -241,14 +258,17 @@
 				4B3FA84A28EF0EA200599358 /* AppDelegate.swift in Sources */,
 				4B91FC0C28F06B8700719EC9 /* RandomUserAPI.swift in Sources */,
 				4B0305CB28F45927000796DE /* String+Extension.swift in Sources */,
+				4B0305D228F58EA7000796DE /* FullScreenImageViewModel.swift in Sources */,
 				4B1B833628F18F050014A9B5 /* ProfileViewModel.swift in Sources */,
 				4B91FC0A28F0683800719EC9 /* RandomUser.swift in Sources */,
 				4B91FBFF28EF7FE100719EC9 /* UICollectionReusableView+Extension.swift in Sources */,
 				4B3FA84C28EF0EA200599358 /* SceneDelegate.swift in Sources */,
+				4B0305D428F594A6000796DE /* FullScreenImageCoordinator.swift in Sources */,
 				4B91FC0528F063D200719EC9 /* UserListViewModel.swift in Sources */,
 				4B1B833D28F1EA080014A9B5 /* LoaderReusableView.swift in Sources */,
 				4BF5742528F3590B00F9752F /* CoreDataStore.swift in Sources */,
 				4B3FA85E28EF0FB900599358 /* UserListViewController.swift in Sources */,
+				4B0305CE28F4A812000796DE /* FullScreenImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,8 +51,9 @@ class ProfileViewController: UIViewController {
     private var cancelLoading: (() -> Void)?
     private var portraitConstraints = [NSLayoutConstraint]()
     private var landscapeConstraints = [NSLayoutConstraint]()
+    private var imageURL: URL?
     
-    var onImageTap: ((UIImage) -> Void)?
+    var onImageTap: ((URL) -> Void)?
     
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -100,6 +101,7 @@ class ProfileViewController: UIViewController {
         dateOfBirthLabel.text = userProfile.dateOfBirth
         emailLabel.text = userProfile.email
         localTimeLabel.text = userProfile.localTime
+        imageURL = userProfile.imageURL
     }
     
     private func setupGestureRecognizer() {
@@ -110,8 +112,8 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func didTapOnImage() {
-        if let image = userImageView.image {
-            onImageTap?(image)
+        if let imageURL = imageURL {
+            onImageTap?(imageURL)
         }
     }
 
