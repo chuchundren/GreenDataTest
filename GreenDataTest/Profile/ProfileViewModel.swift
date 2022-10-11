@@ -11,7 +11,7 @@ import UIKit
 final class ProfileViewModel {
     
     var coordinator: ProfileCoordinator?
-    private let user: RandomUser
+    private let user: UserViewModel
     private let api: RandomUserAPI
     
     private lazy var iso8601Formatter: ISO8601DateFormatter = {
@@ -33,33 +33,33 @@ final class ProfileViewModel {
         return formatter
     }()
     
-    init(user: RandomUser, api: RandomUserAPI = .shared) {
+    init(user: UserViewModel, api: RandomUserAPI = .shared) {
         self.user = user
         self.api = api
     }
     
     func viewModel() -> ProfileViewController.ViewModel {
         let gender = user.gender == .female ? "👩".image(ofSize: 32) : "👨".image(ofSize: 32)
-        let date = iso8601Formatter.date(from: user.dateOfBirth.date)
+        let date = iso8601Formatter.date(from: user.dateOfBirth)
         var formattedDate = ""
-        let yearsOfAge = user.dateOfBirth.age % 10 == 1 ? "year" : "years"
+        let yearsOfAge = user.age % 10 == 1 ? "year" : "years"
         
         if let date = date {
             formattedDate = toStringFormatter.string(from: date)
         }
         
         var localTime = ""
-        if let secondsFromGMT = user.location.timezone.offset.secondsFromGMT(),
+        if let secondsFromGMT = user.localTimeOffset.secondsFromGMT(),
            let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) {
             localTimeFormatter.timeZone = timeZone
             localTime = localTimeFormatter.string(from: Date())
         }
         
         return ProfileViewController.ViewModel(
-            imageURL: user.picture.large,
-            name: user.name.first + " " + user.name.last,
+            imageURL: user.imageURL,
+            name: user.name,
             genderIcon: gender,
-            dateOfBirth: "Date of birth: \(formattedDate) (\(user.dateOfBirth.age) \(yearsOfAge))",
+            dateOfBirth: "Date of birth: \(formattedDate) (\(user.age) \(yearsOfAge))",
             email: user.email,
             localTime: "Local time: \(localTime)"
         )

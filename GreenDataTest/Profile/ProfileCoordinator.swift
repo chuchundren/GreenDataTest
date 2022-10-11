@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class ProfileCoordinator: NavigationCoordinator {
-    private var user: RandomUser
+    private var user: UserViewModel
     
-    init(user: RandomUser) {
+    init(user: UserViewModel) {
         self.user = user
     }
     

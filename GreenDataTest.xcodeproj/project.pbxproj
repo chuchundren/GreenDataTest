@@ -11,6 +11,7 @@
 		4B0305CE28F4A812000796DE /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305CD28F4A812000796DE /* FullScreenImageViewController.swift */; };
 		4B0305D228F58EA7000796DE /* FullScreenImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305D128F58EA7000796DE /* FullScreenImageViewModel.swift */; };
 		4B0305D428F594A6000796DE /* FullScreenImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305D328F594A6000796DE /* FullScreenImageCoordinator.swift */; };
+		4B0305D628F5A376000796DE /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0305D528F5A376000796DE /* UserViewModel.swift */; };
 		4B1B833228F0BEF50014A9B5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833128F0BEF50014A9B5 /* ProfileViewController.swift */; };
 		4B1B833428F0C3080014A9B5 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */; };
 		4B1B833628F18F050014A9B5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */; };
@@ -36,6 +37,7 @@
 		4B0305CD28F4A812000796DE /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		4B0305D128F58EA7000796DE /* FullScreenImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewModel.swift; sourceTree = "<group>"; };
 		4B0305D328F594A6000796DE /* FullScreenImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageCoordinator.swift; sourceTree = "<group>"; };
+		4B0305D528F5A376000796DE /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4B1B833128F0BEF50014A9B5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4B1B833328F0C3080014A9B5 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		4B1B833528F18F050014A9B5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				4B91FC0228EF83C800719EC9 /* UserListCoordinator.swift */,
 				4B91FC0428F063D200719EC9 /* UserListViewModel.swift */,
+				4B0305D528F5A376000796DE /* UserViewModel.swift */,
 				4B91FC0128EF805B00719EC9 /* View */,
 			);
 			path = UserList;
@@ -268,6 +271,7 @@
 				4B1B833D28F1EA080014A9B5 /* LoaderReusableView.swift in Sources */,
 				4BF5742528F3590B00F9752F /* CoreDataStore.swift in Sources */,
 				4B3FA85E28EF0FB900599358 /* UserListViewController.swift in Sources */,
+				4B0305D628F5A376000796DE /* UserViewModel.swift in Sources */,
 				4B0305CE28F4A812000796DE /* FullScreenImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

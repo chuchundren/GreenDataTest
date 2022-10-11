@@ -13,8 +13,10 @@ final class CoreDataStore {
     static let shared = CoreDataStore()
     
     private var bgContext: NSManagedObjectContext
+    private var mainContext: NSManagedObjectContext
     
     private init() {
+        mainContext = CoreDataStore.persistentContainer.viewContext
         bgContext = CoreDataStore.persistentContainer.newBackgroundContext()
         bgContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
@@ -63,9 +65,25 @@ final class CoreDataStore {
             cdUser.email = user.email
             cdUser.gender = user.gender.rawValue
             cdUser.uuid = user.login.uuid
+            cdUser.creationDate = Date()
         }
         
         save()
+    }
+    
+    func fetchUsers() -> [CDRandomUser] {
+        let fetchRequest = CDRandomUser.fetchRequest()
+        let sort = NSSortDescriptor(key: "creationDate", ascending: false)
+        
+        fetchRequest.sortDescriptors = [sort]
+        
+        do {
+            let data = try mainContext.fetch(fetchRequest)
+            return data
+        } catch {
+            print(error)
+            return []
+        }
     }
     
     private func save() {

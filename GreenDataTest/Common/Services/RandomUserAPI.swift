@@ -10,9 +10,16 @@ import UIKit
 
 final class RandomUserAPI {
     typealias Cancellable = () -> Void
-    private var imageCache = NSCache<NSString, NSData>()
+    
     static let shared = RandomUserAPI()
-
+    
+    private lazy var session: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .returnCacheDataElseLoad
+        config.timeoutIntervalForRequest = 5
+        return URLSession(configuration: config)
+    }()
+    
     private init() {}
     
     func getUsers(page: Int, completion: @escaping (Result<[RandomUser], Error>) -> Void) {
@@ -20,7 +27,7 @@ final class RandomUserAPI {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        session.dataTask(with: url) { data, _, error in
             if let data = data {
                 do {
                     let result = try JSONDecoder().decode(RandomUserResult.self, from: data)
@@ -32,16 +39,9 @@ final class RandomUserAPI {
         }.resume()
     }
     
-    func loadImage(url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable? {
-        if let data = imageCache.object(forKey: url.absoluteString as NSString) as? Data,
-           let image = UIImage(data: data) {
-            completion(.success(image))
-            return nil
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+    func loadImage(url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) -> Cancellable {
+        let task = session.dataTask(with: url) { data, _, error in
             if let data = data, let image = UIImage(data: data) {
-                self?.imageCache.setObject(data as NSData, forKey: url.absoluteString as NSString)
                 completion(.success(image))
             }
             
@@ -53,7 +53,6 @@ final class RandomUserAPI {
         }
         
         task.resume()
-        
         return task.cancel
     }
 }

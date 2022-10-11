@@ -87,15 +87,15 @@ class UserListViewController: UIViewController {
 extension UserListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.users.count
+        viewModel.usersViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UserListCell.reuseIdentifier, for: indexPath) as? UserListCell
-        let user = viewModel.users[indexPath.item]
-        cell?.configure(with: viewModel.formatName(of: user))
+        let user = viewModel.usersViewModels[indexPath.item]
+        cell?.configure(with: user.name)
         
-        cell?.cancelLoading = viewModel.loadImage(url: user.picture.large) { image in
+        cell?.cancelLoading = viewModel.loadImage(url: user.imageURL) { image in
             if let image = image {
                 DispatchQueue.main.async {
                     cell?.configure(with: image)
@@ -117,14 +117,13 @@ extension UserListViewController: UICollectionViewDataSource {
         
         fatalError()
     }
-    
 }
 
 extension UserListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        viewModel.didAskToOpenProfile(of: viewModel.users[indexPath.item])
+        viewModel.didAskToOpenProfile(of: viewModel.usersViewModels[indexPath.item])
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {

@@ -15,10 +15,13 @@ final class UserListViewModel {
     
     var usersChanged: () -> Void = {}
     
-    private(set) var users: [RandomUser] = []
+    private var usersApi: [RandomUser] = []
+    private var usersCache: [CDRandomUser] = []
+    private(set) var usersViewModels: [UserViewModel] = []
     
     private var page = 1
     private var requests = 0
+    private var fetchedFromCache = false
     
     init(api: RandomUserAPI = .shared, store: CoreDataStore = .shared) {
         self.api = api
@@ -32,14 +35,20 @@ final class UserListViewModel {
         
         requests += 1
         api.getUsers(page: page) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let users):
-                self?.appendUsers(users)
+                self.appendUsers(users)
             case .failure(let error):
                 print(error)
+                if !self.fetchedFromCache {
+                    self.appendUsers(self.store.fetchUsers())
+                    self.fetchedFromCache = true
+                    print("fetch")
+                }
             }
             
-            self?.requests -= 1
+            self.requests -= 1
         }
     }
     
@@ -54,19 +63,62 @@ final class UserListViewModel {
         }
     }
     
-    func formatName(of model: RandomUser) -> String {
-        model.name.first + " " + model.name.last
-    }
-    
-    func didAskToOpenProfile(of user: RandomUser) {
+    func didAskToOpenProfile(of user: UserViewModel) {
         coordinator?.openProfile(user)
     }
     
     private func appendUsers(_ users: [RandomUser]) {
-        self.users += users
+        usersApi += users
+        usersViewModels = map(usersApi)
+        
         page += 1
         usersChanged()
         store.cacheUsers(users)
+    }
+    
+    private func appendUsers(_ users: [CDRandomUser]) {
+        usersCache += users
+        usersViewModels = map(usersCache)
+        usersChanged()
+    }
+    
+    private func map(_ users: [RandomUser]) -> [UserViewModel] {
+        users.map { user in
+            return UserViewModel(
+                name: user.name.first + " " + user.name.last,
+                imageURL: user.picture.large,
+                gender: user.gender,
+                dateOfBirth: user.dateOfBirth.date,
+                age: user.dateOfBirth.age,
+                localTimeOffset: user.location.timezone.offset,
+                email: user.email
+            )
+        }
+    }
+    
+    private func map(_ users: [CDRandomUser]) -> [UserViewModel] {
+        users.compactMap { user in
+            let name = "\(user.name?.first ?? "") \(user.name?.last ?? "")"
+            if let url = user.picture?.large,
+               let gender = RandomUser.Gender(rawValue: user.gender ?? ""),
+               let dateOfBirth = user.dateOfBirth?.date,
+               let age = user.dateOfBirth?.age,
+               let offset = user.location?.timezone?.offset,
+               let email = user.email {
+                
+                return UserViewModel(
+                    name: name,
+                    imageURL: url,
+                    gender: gender,
+                    dateOfBirth: dateOfBirth,
+                    age: Int(age),
+                    localTimeOffset: offset,
+                    email: email
+                )
+            } else {
+                return nil
+            }
+        }
     }
     
 }
